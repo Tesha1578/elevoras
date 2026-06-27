@@ -24,7 +24,7 @@ export default function Layout() {
   }
 
   return (
-    <div className="flex h-screen bg-bg-deep text-slate-100 font-sans overflow-hidden">
+    <div className="dark flex h-screen bg-bg-deep text-text-primary font-sans overflow-hidden">
       
       {/* LEFT SIDEBAR navigation */}
       <Sidebar 

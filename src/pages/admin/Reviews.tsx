@@ -109,7 +109,7 @@ export default function Reviews() {
         <div className="p-5 rounded-2xl bg-surface border border-border-subtle/80 flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-slate-500 uppercase font-mono text-[8px] tracking-wider">5-Star Feedback</span>
-            <span className="text-emerald-400 font-bold text-2xl mt-1 flex items-center gap-1">
+            <span className="text-violet-400 font-bold text-2xl mt-1 flex items-center gap-1">
               <ThumbsUp size={18} /> {reviewStats.fives} ratings
             </span>
           </div>

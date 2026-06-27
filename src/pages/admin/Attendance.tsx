@@ -345,7 +345,7 @@ export default function Attendance() {
               <div className="flex gap-2 mt-4 border-t border-border-subtle pt-4">
                 <button 
                   type="submit"
-                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
+                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
                 >
                   Register Clock In
                 </button>

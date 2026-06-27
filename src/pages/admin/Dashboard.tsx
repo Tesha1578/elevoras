@@ -245,7 +245,7 @@ export default function Dashboard() {
               <span className="text-slate-600 font-mono ml-1.5">recent reviews</span>
             </div>
           </div>
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+          <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
             <Star size={18} />
           </div>
         </div>
@@ -515,7 +515,7 @@ export default function Dashboard() {
                       alt="Wash proof" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-2 left-2 bg-[#0A0F1E]/80 backdrop-blur px-2.5 py-1 rounded border border-border-subtle/80 flex items-center gap-1.5 text-[9px] font-mono text-primary">
+                    <div className="absolute bottom-2 left-2 bg-[#0F0F0F]/80 backdrop-blur px-2.5 py-1 rounded border border-border-subtle/80 flex items-center gap-1.5 text-[9px] font-mono text-primary">
                       <Camera size={10} /> Camera-Only Lock Enabled
                     </div>
                   </div>
@@ -543,7 +543,7 @@ export default function Dashboard() {
               {selectedWash.status === 'in_progress' && (
                 <button 
                   onClick={() => triggerCompleteWash(selectedWash.id)}
-                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <Camera size={14} /> Simulate Finish
                 </button>

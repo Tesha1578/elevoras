@@ -205,7 +205,7 @@ export default function Customers() {
         </div>
         <button 
           onClick={handleOpenCreate}
-          className="h-10 rounded-xl bg-primary hover:bg-primary/80 text-[#0A0F1E] text-xs font-bold px-4 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
+          className="h-10 rounded-xl bg-primary hover:bg-primary/80 text-white text-xs font-bold px-4 flex items-center gap-1.5 transition-colors cursor-pointer shrink-0"
         >
           <Plus size={16} /> Add Resident Customer
         </button>
@@ -309,7 +309,7 @@ export default function Customers() {
                     {/* Vehicle */}
                     <td className="py-3.5 px-5">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] text-slate-200 bg-[#0A0F1E] border border-border-subtle px-2 py-0.5 rounded">
+                        <span className="font-mono text-[10px] text-slate-200 bg-[#0F0F0F] border border-border-subtle px-2 py-0.5 rounded">
                           {cust.vehicleNumber}
                         </span>
                         <span className="text-[10px] text-slate-500 capitalize">({cust.vehicleType})</span>
@@ -528,7 +528,7 @@ export default function Customers() {
             <div className="mt-8 border-t border-border-subtle pt-4 flex gap-2">
               <button 
                 onClick={() => document.getElementById('submit-form-btn')?.click()}
-                className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
               >
                 Save Profile
               </button>

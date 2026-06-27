@@ -221,7 +221,7 @@ export default function Reports() {
           <div className="mt-4 border-t border-border-subtle/50 pt-4 flex flex-col gap-2">
             <button 
               onClick={() => handleExport('pdf')}
-              className="h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+              className="h-11 bg-primary hover:bg-primary/80 text-white font-bold rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               <FileDown size={14} /> Export Document (PDF)
             </button>

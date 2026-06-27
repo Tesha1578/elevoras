@@ -43,10 +43,10 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0F1E] text-slate-100 flex flex-col justify-center items-center p-6 relative">
+    <div className="dark min-h-screen w-full bg-bg-deep text-text-primary flex flex-col justify-center items-center p-6 relative">
       {/* Glow Blobs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] radial-blob-green rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] radial-blob-blue rounded-full pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] radial-blob-red rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] radial-blob-dark rounded-full pointer-events-none" />
 
       <div className="w-full max-w-md">
         <div className="text-center mb-8 flex flex-col items-center">
@@ -108,7 +108,7 @@ export default function Login() {
             <button 
               type="submit" 
               disabled={loading}
-              className="h-11 rounded-xl bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-11 rounded-xl bg-primary hover:bg-primary/80 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Authenticating...' : 'Sign In'} <ArrowRight size={16} />
             </button>

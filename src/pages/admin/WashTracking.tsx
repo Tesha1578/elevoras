@@ -232,7 +232,7 @@ export default function WashTracking() {
                       ) : (
                         <button 
                           onClick={() => triggerCompleteWash(wash.id)}
-                          className="px-2.5 py-1 bg-primary text-[#0A0F1E] font-bold font-heading rounded text-[9px] flex items-center gap-1 cursor-pointer"
+                          className="px-2.5 py-1 bg-primary text-white font-bold font-heading rounded text-[9px] flex items-center gap-1 cursor-pointer"
                         >
                           <Camera size={10} /> Finish
                         </button>
@@ -429,7 +429,7 @@ export default function WashTracking() {
                       alt="Wash proof" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-2 left-2 bg-[#0A0F1E]/80 backdrop-blur px-2.5 py-1 rounded border border-border-subtle/80 flex items-center gap-1.5 text-[9px] font-mono text-primary">
+                    <div className="absolute bottom-2 left-2 bg-[#0F0F0F]/80 backdrop-blur px-2.5 py-1 rounded border border-border-subtle/80 flex items-center gap-1.5 text-[9px] font-mono text-primary">
                       <Camera size={10} /> Camera-Only Lock Enabled
                     </div>
                   </div>
@@ -458,7 +458,7 @@ export default function WashTracking() {
                 <>
                   <button 
                     onClick={() => triggerCompleteWash(selectedWash.id)}
-                    className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                   >
                     <Check size={14} /> Complete Wash
                   </button>

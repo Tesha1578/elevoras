@@ -115,13 +115,13 @@ export default function Flats() {
         <div className="flex border border-border-subtle rounded-xl overflow-hidden shrink-0 font-sans text-xs">
           <button 
             onClick={() => setActiveTab('grid')}
-            className={`px-4 h-10 font-bold transition-colors cursor-pointer ${activeTab === 'grid' ? 'bg-primary text-[#0A0F1E]' : 'bg-surface text-slate-400 hover:text-slate-200'}`}
+            className={`px-4 h-10 font-bold transition-colors cursor-pointer ${activeTab === 'grid' ? 'bg-primary text-white' : 'bg-surface text-slate-400 hover:text-slate-200'}`}
           >
             Visual Occupancy Grid
           </button>
           <button 
             onClick={() => setActiveTab('locations')}
-            className={`px-4 h-10 font-bold transition-colors cursor-pointer ${activeTab === 'locations' ? 'bg-primary text-[#0A0F1E]' : 'bg-surface text-slate-400 hover:text-slate-200'}`}
+            className={`px-4 h-10 font-bold transition-colors cursor-pointer ${activeTab === 'locations' ? 'bg-primary text-white' : 'bg-surface text-slate-400 hover:text-slate-200'}`}
           >
             Manage Gated Communities ({locations.length})
           </button>
@@ -287,7 +287,7 @@ export default function Flats() {
               <div className="flex flex-col gap-1.5">
                 <div className="text-[10px] text-slate-500 uppercase font-mono flex items-center gap-1"><User size={10} /> Subscriber Resident</div>
                 {selectedFlat.customerId ? (
-                  <div className="p-3 rounded-xl bg-[#0A0F1E] border border-border-subtle flex justify-between items-center">
+                  <div className="p-3 rounded-xl bg-[#0F0F0F] border border-border-subtle flex justify-between items-center">
                     <div>
                       <span className="font-semibold text-slate-200">{selectedFlat.customerName}</span>
                       <span className="text-[10px] text-slate-500 block mt-0.5">Subscriber ID: {selectedFlat.customerId}</span>
@@ -316,7 +316,7 @@ export default function Flats() {
               <div className="flex gap-2 mt-4 border-t border-border-subtle pt-4">
                 <button 
                   onClick={handleUpdateAssignment}
-                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
+                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
                 >
                   Confirm Allocation
                 </button>
@@ -403,7 +403,7 @@ export default function Flats() {
               <div className="flex gap-2 mt-4 border-t border-border-subtle pt-4">
                 <button 
                   type="submit"
-                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
+                  className="flex-1 h-11 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center transition-colors cursor-pointer"
                 >
                   Add Community
                 </button>

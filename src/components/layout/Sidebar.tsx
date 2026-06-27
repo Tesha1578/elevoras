@@ -86,7 +86,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3.5 h-11 px-3.5 rounded-xl text-xs font-semibold font-sans transition-all duration-200 ${
                 isActive 
-                  ? 'bg-primary text-[#0A0F1E] shadow-lg shadow-primary/10' 
+                  ? 'bg-primary text-white shadow-lg shadow-primary/10' 
                   : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/40'
               }`}
             >

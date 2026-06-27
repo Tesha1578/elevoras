@@ -195,7 +195,7 @@ export default function TopBar({ setMobileOpen, mobileOpen }: TopBarProps) {
           >
             <Bell size={18} />
             {unreadCount > 0 && (
-              <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-primary text-[#0A0F1E] font-mono text-[9px] font-bold flex items-center justify-center animate-pulse">
+              <span className="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-primary text-white font-mono text-[9px] font-bold flex items-center justify-center animate-pulse">
                 {unreadCount}
               </span>
             )}
@@ -237,7 +237,7 @@ export default function TopBar({ setMobileOpen, mobileOpen }: TopBarProps) {
                         <div className="mt-0.5">
                           {notif.type === 'wash' && <Car size={14} className="text-primary" />}
                           {notif.type === 'payment' && <Coins size={14} className="text-secondary" />}
-                          {notif.type === 'attendance' && <Sparkles size={14} className="text-emerald-400" />}
+                          {notif.type === 'attendance' && <Sparkles size={14} className="text-violet-400" />}
                         </div>
                         <div className="flex-1 flex flex-col">
                           <span className="font-semibold text-slate-200">{notif.title}</span>
@@ -318,7 +318,7 @@ export default function TopBar({ setMobileOpen, mobileOpen }: TopBarProps) {
                               <div className="font-semibold text-slate-200">{c.name}</div>
                               <div className="text-[10px] text-slate-400 mt-0.5">Flat {c.flatNumber} &middot; {c.locationName}</div>
                             </div>
-                            <span className="font-mono text-[10px] text-slate-500 bg-[#0A0F1E] px-2 py-0.5 rounded border border-border-subtle">
+                            <span className="font-mono text-[10px] text-slate-500 bg-[#0F0F0F] px-2 py-0.5 rounded border border-border-subtle">
                               {c.vehicleNumber}
                             </span>
                           </div>

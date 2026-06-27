@@ -251,7 +251,7 @@ export default function Settings() {
                     value={newAdmin.name}
                     onChange={(e) => setNewAdmin({ ...newAdmin, name: e.target.value })}
                     placeholder="Vijay R."
-                    className="h-9 rounded bg-[#0A0F1E] border border-border-subtle px-3 text-white focus:outline-none"
+                    className="h-9 rounded bg-[#0F0F0F] border border-border-subtle px-3 text-white focus:outline-none"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -261,7 +261,7 @@ export default function Settings() {
                     value={newAdmin.email}
                     onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })}
                     placeholder="vijay@sparkledrop.in"
-                    className="h-9 rounded bg-[#0A0F1E] border border-border-subtle px-3 text-white focus:outline-none"
+                    className="h-9 rounded bg-[#0F0F0F] border border-border-subtle px-3 text-white focus:outline-none"
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -269,7 +269,7 @@ export default function Settings() {
                   <select 
                     value={newAdmin.role}
                     onChange={(e) => setNewAdmin({ ...newAdmin, role: e.target.value })}
-                    className="h-9 rounded bg-[#0A0F1E] border border-border-subtle px-3 text-slate-300 focus:outline-none cursor-pointer w-full text-xs"
+                    className="h-9 rounded bg-[#0F0F0F] border border-border-subtle px-3 text-slate-300 focus:outline-none cursor-pointer w-full text-xs"
                   >
                     <option value="Super Admin">Super Admin</option>
                     <option value="Manager">Manager</option>
@@ -281,7 +281,7 @@ export default function Settings() {
                   <button 
                     type="button"
                     onClick={handleAddAdmin}
-                    className="flex-1 h-9 bg-primary text-[#0A0F1E] font-bold rounded-lg cursor-pointer"
+                    className="flex-1 h-9 bg-primary text-white font-bold rounded-lg cursor-pointer"
                   >
                     Authorize
                   </button>
@@ -309,7 +309,7 @@ export default function Settings() {
           {/* Master Save Button */}
           <button 
             type="submit"
-            className="w-full h-12 bg-primary hover:bg-primary/80 text-[#0A0F1E] font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-lg shadow-primary/20 transition-colors cursor-pointer"
+            className="w-full h-12 bg-primary hover:bg-primary/80 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-lg shadow-primary/20 transition-colors cursor-pointer"
           >
             <Save size={16} /> Deploy & Commit Configurations
           </button>
