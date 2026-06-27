@@ -44,8 +44,18 @@ export default function Layout() {
         />
 
         {/* PAGE CONTENT scrollable container */}
-        <main className="flex-1 overflow-y-auto bg-[#080d1a] relative">
-          <Outlet />
+        <main className="flex-1 overflow-y-auto bg-bg-deep relative">
+          {/* BMW Background Image */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.05] overflow-hidden">
+            <img 
+              src="/bmw-headlights.png" 
+              alt="BMW Backdrop" 
+              className="w-full h-full object-cover object-center select-none"
+            />
+          </div>
+          <div className="relative z-10">
+            <Outlet />
+          </div>
         </main>
       </div>
 
