@@ -18,7 +18,9 @@ import {
   FileText, 
   WifiOff, 
   Menu, 
-  X 
+  X,
+  Sun,
+  Moon
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useMockStore } from '../stores/mockStore'
@@ -26,6 +28,8 @@ import { useMockStore } from '../stores/mockStore'
 export default function LandingPage() {
   const navigate = useNavigate()
   const currentAdmin = useMockStore(state => state.currentAdmin)
+  const theme = useMockStore(state => state.theme)
+  const toggleTheme = useMockStore(state => state.toggleTheme)
   
   // Mobile menu state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -111,6 +115,15 @@ export default function LandingPage() {
             >
               Get a Demo
             </a>
+
+            {/* Theme Toggle Button */}
+            <button 
+              onClick={toggleTheme}
+              className="w-10 h-10 rounded-full border border-border-subtle hover:border-primary text-text-primary flex items-center justify-center transition-colors cursor-pointer"
+              title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            >
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
           </div>
 
           {/* Mobile menu trigger */}
@@ -124,7 +137,7 @@ export default function LandingPage() {
 
         {/* Mobile Nav Overlay */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-20 left-0 right-0 bg-[#0F0F0F] border-b border-border-subtle/80 flex flex-col p-6 gap-5 shadow-2xl transition-all duration-300">
+          <div className="md:hidden absolute top-20 left-0 right-0 bg-bg-deep border-b border-border-subtle/80 flex flex-col p-6 gap-5 shadow-2xl transition-all duration-300">
             <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-base font-semibold text-slate-700 hover:text-primary">How It Works</a>
             <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-base font-semibold text-slate-700 hover:text-primary">Features</a>
             <a href="#apps" onClick={() => setMobileMenuOpen(false)} className="text-base font-semibold text-slate-700 hover:text-primary">Apps</a>
@@ -134,6 +147,15 @@ export default function LandingPage() {
             <hr className="border-border-subtle my-2" />
             
             <div className="flex flex-col gap-3">
+              {/* Mobile Theme Toggle */}
+              <button 
+                onClick={toggleTheme}
+                className="w-full h-12 rounded-full text-sm font-semibold border border-border-subtle text-slate-800 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+              </button>
+
               <button 
                 onClick={() => { setMobileMenuOpen(false); navigate('/login'); }}
                 className="w-full h-12 rounded-full text-sm font-semibold border border-border-subtle text-slate-800 flex items-center justify-center"

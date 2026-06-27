@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, ShieldCheck, Mail, Lock } from 'lucide-react'
+import { ArrowRight, ShieldCheck, Mail, Lock, Sun, Moon } from 'lucide-react'
 import { useMockStore } from '../stores/mockStore'
 
 export default function Login() {
   const navigate = useNavigate()
   const login = useMockStore(state => state.login)
   const currentAdmin = useMockStore(state => state.currentAdmin)
+  const theme = useMockStore(state => state.theme)
+  const toggleTheme = useMockStore(state => state.toggleTheme)
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -44,6 +46,17 @@ export default function Login() {
 
   return (
     <div className="dark min-h-screen w-full bg-bg-deep text-text-primary flex flex-col justify-center items-center p-6 relative">
+      {/* Floating Theme Toggle */}
+      <div className="absolute top-6 right-6 z-50">
+        <button 
+          onClick={toggleTheme}
+          className="w-10 h-10 rounded-full bg-surface border border-border-subtle/80 flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
+          title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+        >
+          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+        </button>
+      </div>
+
       {/* Glow Blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] radial-blob-red rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] radial-blob-dark rounded-full pointer-events-none" />

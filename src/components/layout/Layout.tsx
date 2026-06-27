@@ -24,7 +24,7 @@ export default function Layout() {
   }
 
   return (
-    <div className="dark flex h-screen bg-bg-deep text-text-primary font-sans overflow-hidden">
+    <div className="flex h-screen bg-bg-deep text-text-primary font-sans overflow-hidden">
       
       {/* LEFT SIDEBAR navigation */}
       <Sidebar 
@@ -46,11 +46,16 @@ export default function Layout() {
         {/* PAGE CONTENT scrollable container */}
         <main className="flex-1 overflow-y-auto bg-bg-deep relative">
           {/* BMW Background Image */}
-          <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.05] overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.12] overflow-hidden">
             <img 
               src="/bmw-headlights.png" 
               alt="BMW Backdrop" 
               className="w-full h-full object-cover object-center select-none"
+            />
+            {/* Unique blending mask: fades the car out at the screen edges */}
+            <div 
+              className="absolute inset-0 pointer-events-none" 
+              style={{ background: 'radial-gradient(circle, transparent 20%, var(--color-bg-deep) 90%)' }} 
             />
           </div>
           <div className="relative z-10">

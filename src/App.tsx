@@ -14,10 +14,15 @@ import Reviews from './pages/admin/Reviews'
 import Reports from './pages/admin/Reports'
 import Settings from './pages/admin/Settings'
 
+import { useMockStore } from './stores/mockStore'
+
 export default function App() {
+  const theme = useMockStore(state => state.theme)
+
   return (
-    <BrowserRouter>
-      <Routes>
+    <div className={`${theme === 'dark' ? 'dark' : ''} min-h-screen bg-bg-deep text-text-primary transition-colors duration-300`}>
+      <BrowserRouter>
+        <Routes>
         {/* Marketing Portal root */}
         <Route path="/" element={<LandingPage />} />
         
@@ -41,6 +46,7 @@ export default function App() {
         {/* Catch-all redirect */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   )
 }

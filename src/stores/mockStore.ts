@@ -170,6 +170,10 @@ interface MockStoreState {
   
   // Settings
   updateSettings: (settings: Partial<Settings>) => void
+
+  // Theme Toggle
+  theme: 'light' | 'dark'
+  toggleTheme: () => void
 }
 
 // Helper: Generate date string relative to today
@@ -475,6 +479,12 @@ for (let day = -14; day <= 0; day++) {
 
 // Zustand Core Store
 export const useMockStore = create<MockStoreState>((set, get) => ({
+  theme: (localStorage.getItem('theme') as 'light' | 'dark') || 'dark',
+  toggleTheme: () => {
+    const newTheme = get().theme === 'light' ? 'dark' : 'light'
+    localStorage.setItem('theme', newTheme)
+    set({ theme: newTheme })
+  },
   locations: mockLocations,
   flats: mockFlats,
   cleaners: mockCleaners,

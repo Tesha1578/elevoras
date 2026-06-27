@@ -10,7 +10,9 @@ import {
   Car,
   Coins,
   Check,
-  X
+  X,
+  Sun,
+  Moon
 } from 'lucide-react'
 import { useMockStore } from '../../stores/mockStore'
 
@@ -26,6 +28,8 @@ export default function TopBar({ setMobileOpen, mobileOpen }: TopBarProps) {
   const washes = useMockStore(state => state.washes)
   const payments = useMockStore(state => state.payments)
   const cleaners = useMockStore(state => state.cleaners)
+  const theme = useMockStore(state => state.theme)
+  const toggleTheme = useMockStore(state => state.toggleTheme)
 
   const [notifications, setNotifications] = useState<any[]>([])
   const [showNotifications, setShowNotifications] = useState(false)
@@ -185,6 +189,15 @@ export default function TopBar({ setMobileOpen, mobileOpen }: TopBarProps) {
           <span className="text-[10px] font-mono bg-slate-800/80 px-1.5 py-0.5 rounded border border-border-subtle">
             &#8984;K
           </span>
+        </button>
+
+        {/* Theme Toggle Button */}
+        <button 
+          onClick={toggleTheme}
+          className="w-10 h-10 rounded-xl bg-surface border border-border-subtle/80 flex items-center justify-center text-slate-400 hover:text-white transition-colors cursor-pointer"
+          title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+        >
+          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
         </button>
 
         {/* Notifications Bell */}
