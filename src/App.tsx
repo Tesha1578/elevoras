@@ -14,6 +14,11 @@ import Reviews from './pages/admin/Reviews'
 import Reports from './pages/admin/Reports'
 import Settings from './pages/admin/Settings'
 
+// Simulator Components
+import CustomerApp from './pages/customer/CustomerApp'
+import CleanerApp from './pages/cleaner/CleanerApp'
+import SandboxOverlay from './components/layout/SandboxOverlay'
+
 import { useMockStore } from './stores/mockStore'
 
 export default function App() {
@@ -23,29 +28,36 @@ export default function App() {
     <div className={`${theme === 'dark' ? 'dark' : ''} min-h-screen bg-bg-deep text-text-primary transition-colors duration-300`}>
       <BrowserRouter>
         <Routes>
-        {/* Marketing Portal root */}
-        <Route path="/" element={<LandingPage />} />
-        
-        {/* Auth gateway */}
-        <Route path="/login" element={<Login />} />
-        
-        {/* Protected Admin Command Center */}
-        <Route path="/admin" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="customers" element={<Customers />} />
-          <Route path="cleaners" element={<Cleaners />} />
-          <Route path="flats" element={<Flats />} />
-          <Route path="washes" element={<WashTracking />} />
-          <Route path="attendance" element={<Attendance />} />
-          <Route path="payments" element={<Payments />} />
-          <Route path="reviews" element={<Reviews />} />
-          <Route path="reports" element={<Reports />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
+          {/* Marketing Portal root */}
+          <Route path="/" element={<LandingPage />} />
+          
+          {/* Auth gateway */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* Mobile Simulator Viewports */}
+          <Route path="/customer" element={<CustomerApp />} />
+          <Route path="/cleaner" element={<CleanerApp />} />
+          
+          {/* Protected Admin Command Center */}
+          <Route path="/admin" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="cleaners" element={<Cleaners />} />
+            <Route path="flats" element={<Flats />} />
+            <Route path="washes" element={<WashTracking />} />
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="reports" element={<Reports />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
 
-        {/* Catch-all redirect */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          {/* Catch-all redirect */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+
+        {/* Global Sandbox Viewport Switcher */}
+        <SandboxOverlay />
       </BrowserRouter>
     </div>
   )

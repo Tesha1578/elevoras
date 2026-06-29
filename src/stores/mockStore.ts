@@ -15,6 +15,11 @@ export interface Customer {
   cleanerName: string
   status: 'active' | 'inactive'
   createdAt: string
+  walletBalance?: number
+  vehicles?: { plateNumber: string; type: 'car' | 'bike'; brand: string; color: string; model: string }[]
+  activePlan?: string
+  vacationStart?: string | null
+  vacationEnd?: string | null
 }
 
 export interface Cleaner {
@@ -69,6 +74,7 @@ export interface Wash {
   review?: string
   paymentAmount: number
   paymentStatus: 'pending' | 'success' | 'failed' | 'refunded'
+  vehicleNumber?: string
 }
 
 export interface Attendance {
@@ -174,6 +180,19 @@ interface MockStoreState {
   // Theme Toggle
   theme: 'light' | 'dark'
   toggleTheme: () => void
+
+  // Viewport Switcher Persona States
+  currentCustomerId: string | null
+  currentCleanerId: string | null
+  setCurrentCustomerId: (id: string | null) => void
+  setCurrentCleanerId: (id: string | null) => void
+  
+  // Custom simulator actions
+  addCustomerVehicle: (customerId: string, vehicle: { plateNumber: string; type: 'car' | 'bike'; brand: string; color: string; model: string }) => void
+  updateCustomerWallet: (customerId: string, amount: number) => void
+  clockInCleanerWithSelfie: (cleanerId: string, selfieUrl: string) => void
+  updateCustomerVacation: (customerId: string, startDate: string | null, endDate: string | null) => void
+  updateCustomerPlan: (customerId: string, plan: string) => void
 }
 
 // Helper: Generate date string relative to today
@@ -262,7 +281,27 @@ for (let i = 1; i <= 55; i++) {
     cleanerId: cleaner.id,
     cleanerName: cleaner.name,
     status: i === 55 ? 'inactive' : 'active',
-    createdAt: getRelativeDateString(-30 + (i % 20))
+    createdAt: getRelativeDateString(-30 + (i % 20)),
+    walletBalance: i % 3 === 0 ? 350 : i % 5 === 0 ? 1200 : 750,
+    vehicles: [
+      {
+        plateNumber: vehicleNumber,
+        type: vType === 'both' ? 'car' : vType,
+        brand: i % 2 === 0 ? 'BMW' : 'Hyundai',
+        color: i % 3 === 0 ? 'Blue' : 'Black',
+        model: i % 2 === 0 ? '3 Series' : 'i20'
+      },
+      ...(vType === 'both' ? [{
+        plateNumber: vehicleNumber.replace('TN', 'KA').replace('1', '9'),
+        type: 'bike' as const,
+        brand: 'Royal Enfield',
+        color: 'Grey',
+        model: 'Classic 350'
+      }] : [])
+    ],
+    activePlan: i % 4 === 0 ? 'Gold' : i % 5 === 0 ? 'Diamond' : 'Silver',
+    vacationStart: null,
+    vacationEnd: null
   }
   
   mockCustomers.push(customer)
@@ -383,7 +422,8 @@ for (let day = -14; day <= 0; day++) {
       rating,
       review,
       paymentAmount: washAmount,
-      paymentStatus
+      paymentStatus,
+      vehicleNumber: customer.vehicleNumber
     }
     
     mockWashes.push(wash)
@@ -484,6 +524,92 @@ export const useMockStore = create<MockStoreState>((set, get) => ({
     const newTheme = get().theme === 'light' ? 'dark' : 'light'
     localStorage.setItem('theme', newTheme)
     set({ theme: newTheme })
+  },
+  currentCustomerId: 'cust-1',
+  currentCleanerId: 'cln-1',
+  setCurrentCustomerId: (id) => set({ currentCustomerId: id }),
+  setCurrentCleanerId: (id) => set({ currentCleanerId: id }),
+
+  addCustomerVehicle: (customerId, vehicle) => {
+    set(state => ({
+      customers: state.customers.map(c => c.id === customerId ? {
+        ...c,
+        vehicles: [...(c.vehicles || []), vehicle]
+      } : c)
+    }))
+  },
+
+  updateCustomerWallet: (customerId, amount) => {
+    set(state => {
+      const customer = state.customers.find(c => c.id === customerId)
+      if (!customer) return state
+      
+      const payId = `tx-wallet-${state.payments.length + 1}`
+      const newPayment: Payment = {
+        id: payId,
+        transactionId: `TXN${String(state.payments.length + 1).padStart(8, '0')}`,
+        customerId,
+        customerName: customer.name,
+        amount,
+        type: 'wallet',
+        status: 'success',
+        date: new Date().toISOString(),
+        invoiceUrl: `/invoices/INV-${payId}.pdf`
+      }
+      
+      return {
+        customers: state.customers.map(c => c.id === customerId ? {
+          ...c,
+          walletBalance: (c.walletBalance || 0) + amount
+        } : c),
+        payments: [newPayment, ...state.payments]
+      }
+    })
+  },
+
+  clockInCleanerWithSelfie: (cleanerId, selfieUrl) => {
+    set(state => {
+      const cleaner = state.cleaners.find(c => c.id === cleanerId)
+      if (!cleaner) return state
+      
+      const dateFormatted = new Date().toISOString().split('T')[0]
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      const isLate = parseInt(time.split(':')[0]) >= 9 && parseInt(time.split(':')[1]) > 30
+      
+      const newAttendance: Attendance & { selfieUrl?: string } = {
+        id: `att-${state.attendance.length + 1}`,
+        cleanerId,
+        cleanerName: cleaner.name,
+        date: dateFormatted,
+        checkIn: time,
+        status: isLate ? 'late' : 'present',
+        selfieUrl
+      }
+      
+      return {
+        attendance: [newAttendance, ...state.attendance],
+        cleaners: state.cleaners.map(c => c.id === cleanerId ? { ...c, status: 'active' as const } : c)
+      }
+    })
+  },
+
+  updateCustomerVacation: (customerId, startDate, endDate) => {
+    set(state => ({
+      customers: state.customers.map(c => c.id === customerId ? {
+        ...c,
+        vacationStart: startDate,
+        vacationEnd: endDate
+      } : c)
+    }))
+  },
+
+  updateCustomerPlan: (customerId, plan) => {
+    set(state => ({
+      customers: state.customers.map(c => c.id === customerId ? {
+        ...c,
+        activePlan: plan
+      } : c)
+    }))
   },
   locations: mockLocations,
   flats: mockFlats,
@@ -809,7 +935,8 @@ export const useMockStore = create<MockStoreState>((set, get) => ({
       ...wash,
       id: newId,
       status: 'scheduled',
-      paymentStatus: 'pending'
+      paymentStatus: 'pending',
+      vehicleNumber: wash.vehicleNumber || get().customers.find(c => c.id === wash.customerId)?.vehicleNumber || ''
     }
     set(state => ({
       washes: [newWash, ...state.washes]
@@ -853,6 +980,18 @@ export const useMockStore = create<MockStoreState>((set, get) => ({
         return c
       })
       
+      // Deduct from customer's wallet balance
+      const updatedCustomers = state.customers.map(c => {
+        if (c.id === wash.customerId) {
+          const currentBal = c.walletBalance || 0
+          return {
+            ...c,
+            walletBalance: Math.max(0, currentBal - wash.paymentAmount)
+          }
+        }
+        return c
+      })
+      
       return {
         washes: state.washes.map(w => w.id === washId ? {
           ...w,
@@ -863,7 +1002,8 @@ export const useMockStore = create<MockStoreState>((set, get) => ({
           paymentStatus: 'success'
         } : w),
         payments: [newPayment, ...state.payments],
-        cleaners: updatedCleaners
+        cleaners: updatedCleaners,
+        customers: updatedCustomers
       }
     })
   },

@@ -91,6 +91,11 @@ export default function LandingPage() {
             <a href="#apps" className="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Apps</a>
             <a href="#pricing" className="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Pricing</a>
             <a href="#contact" className="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Contact</a>
+            
+            <span className="w-[1px] h-4 bg-border-subtle" />
+            
+            <button onClick={() => navigate('/customer')} className="text-sm font-bold text-primary hover:text-primary/80 transition-colors cursor-pointer">Customer App</button>
+            <button onClick={() => navigate('/cleaner')} className="text-sm font-bold text-success hover:text-success/80 transition-colors cursor-pointer">Cleaner App</button>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
